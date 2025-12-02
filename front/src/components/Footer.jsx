@@ -4,7 +4,7 @@ import { Link } from "react-router-dom";
 
 export const Footer = () => {
   return (
-    <footer className="bg-pink-100 py-8 font-redhat flex flex-col justify-center gap-3">
+    <footer className="bg-pink-100 py-8 flex flex-col justify-center gap-3">
       <div className="flex items-center justify-center gap-3 text-2xl">
         <Link to="https://www.instagram.com/kleancolorperu/">
           <BsInstagram />

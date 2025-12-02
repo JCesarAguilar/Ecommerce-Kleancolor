@@ -6,7 +6,7 @@ export const NavBar = () => {
   return (
     <nav className="flex items-center">
       <BurgerMenu />
-      <ul className="space-x-5 hidden lg:flex lg:items-center lg:gap-8">
+      <ul className="space-x-5 hidden lg:flex lg:items-center lg:gap-3">
         {NAV_ITEMS.map((item, index) => (
           <li
             key={index}
