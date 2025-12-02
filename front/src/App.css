@@ -1,0 +1,25 @@
+@import "tailwindcss";
+
+@theme {
+  --font-lavishly: "Lavishly Yours", cursive;
+}
+
+@font-face {
+  font-family: "Red Hat Display";
+  src: url("./assets/fonts/RedHatDisplay-VariableFont_wght.ttf")
+    format("truetype");
+  font-weight: 100 900;
+  font-style: normal;
+}
+
+@font-face {
+  font-family: "Red Hat Display";
+  src: url("./assets/fonts/RedHatDisplay-Italic-VariableFont_wght.ttf")
+    format("truetype");
+  font-weight: 100 900;
+  font-style: italic;
+}
+
+.font-redhat {
+  font-family: "Red Hat Display";
+}
