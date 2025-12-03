@@ -10,7 +10,7 @@ export default function ProductCard({ product }) {
   return (
     <div className="min-w-[240px] max-w-full snap-start shrink-0 bg-white rounded-lg shadow p-4">
       <img
-        src={product.image}
+        src={product.gallery?.[0].image}
         alt={`Imagen ${product.name}`}
         className="w-full h-52 object-contain mb-4"
       />

@@ -1,5 +1,5 @@
-import { useParams } from "react-router-dom";
-import { useNavigate } from "react-router-dom";
+import { useParams, useNavigate } from "react-router-dom";
+import { useState } from "react";
 import { P1 } from "../../components/common/Typography";
 import { PATHROUTES } from "../../helpers/NavItems";
 import products from "../../helpers/ProductsData";
@@ -9,6 +9,10 @@ export default function ProductDetail() {
   const navigate = useNavigate();
   const { productId } = useParams();
   const product = products.find((product) => product.id === Number(productId));
+
+  const [mainImage, setMainImage] = useState(
+    product.gallery?.[0] || { image: product.image, colorName: "Default" }
+  );
 
   if (!product) {
     return <P1 className="text-center mt-20">Producto no encontrado</P1>;
@@ -21,26 +25,30 @@ export default function ProductDetail() {
   return (
     <div>
       <BackButton />
-      <div className="max-w-7xl mx-auto lg:pt-10 lg:pb-12 grid grid-cols-1 md:grid-cols-2 gap-8">
+      <div className="max-w-7xl mx-auto lg:pt-5 lg:pb-15 grid grid-cols-1 md:grid-cols-2 gap-8 pb-5">
         <div>
           <img
-            src={product.image}
+            src={mainImage.image}
             alt={product.name}
-            className="w-full h-[500px] object-contain rounded-lg"
+            className="w-full h-[500px] object-contain px-6 lg:px-0"
           />
-          {/* <div className="flex gap-2 mt-4">
-          {product.gallery?.map((img, i) => (
-            <img
-              key={i}
-              src={img}
-              alt={`Vista ${i + 1}`}
-              className="w-20 h-20 object-contain border rounded cursor-pointer"
-            />
-          ))}
-        </div> */}
+          {product.gallery.length > 1 ? (
+            <div className="flex gap-2 lg:mt-10 lg:gap-5 justify-center ">
+              {product.gallery?.map((variant, index) => (
+                <img
+                  key={index}
+                  src={variant.image}
+                  alt={`Vista ${index + 1}`}
+                  onClick={() => setMainImage(variant)}
+                  className={`lg:w-20 lg:h-20 object-contain cursor-pointer w-15 h-15 rounded border 
+      ${mainImage === variant ? "border-[#ff33b6]" : "border-transparent"}`}
+                />
+              ))}
+            </div>
+          ) : null}
         </div>
 
-        <div className="px-6 pb-10">
+        <div className="px-6 pb-10 flex flex-col justify-center mt-4 lg:mt-0 lg:gap-5 gap-3">
           <h1 className="text-3xl font-bold mb-2">{product.name}</h1>
           <p className="text-2xl font-semibold text-gray-900 mb-4">
             S/ {product.price.toFixed(2)}
@@ -54,23 +62,17 @@ export default function ProductDetail() {
               {product.reviews?.length || 8} reseñas
             </span>
           </div>
-          <h4 className="font-bold mb-2 text-gray-900">Descripción</h4>
-          <P1 className="text-gray-700 mb-6 text-justify">
-            {product.description}
-          </P1>
-          <div className="mb-6">
-            <h3 className="text-sm font-medium text-gray-900 mb-2">Color</h3>
-            <div className="flex gap-3">
-              {product.colors?.map((color, i) => (
-                <button
-                  key={i}
-                  className={`w-8 h-8 rounded-full border-2 ${
-                    color === product.selectedColor ? "ring-2 ring-black" : ""
-                  }`}
-                  style={{ backgroundColor: color }}
-                ></button>
-              ))}
-            </div>
+          <div>
+            <h4 className="font-bold mb-2 text-gray-900">Descripción</h4>
+            <P1 className="text-gray-700 mb-6 text-justify">
+              {product.description}
+            </P1>
+            {product.gallery.length > 1 && (
+              <div className="flex gap-3 items-center mb-5">
+                <p className="font-bold text-gray-900">Tono:</p>
+                <P1>{mainImage.colorName}</P1>
+              </div>
+            )}
           </div>
           <button
             onClick={handleClick}
