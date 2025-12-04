@@ -35,7 +35,7 @@ Bienvenido/a a **Ecommerce KleanColor**, una tienda en línea moderna y responsi
 
 ## 📷 Capturas
 
-| Home Page                     | Página de Producto                    | Responsive                        |
+| Home Page                     | Página de Productos                   | Responsive                        |
 | ----------------------------- | ------------------------------------- | --------------------------------- |
 | ![Home](screenshots/home.jpg) | ![Producto](screenshots/products.jpg) | ![Mobile](screenshots/mobile.jpg) |
 
