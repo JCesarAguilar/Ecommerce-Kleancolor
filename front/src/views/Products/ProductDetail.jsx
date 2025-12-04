@@ -7,8 +7,8 @@ import BackButton from "../../components/common/BackButton";
 
 export default function ProductDetail() {
   const navigate = useNavigate();
-  const { productId } = useParams();
-  const product = products.find((product) => product.id === Number(productId));
+  const { slug } = useParams();
+  const product = products.find((product) => product.slug === slug);
 
   const [mainImage, setMainImage] = useState(
     product.gallery?.[0] || { image: product.image, colorName: "Default" }

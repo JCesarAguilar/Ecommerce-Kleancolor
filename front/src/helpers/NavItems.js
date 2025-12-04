@@ -1,7 +1,7 @@
 export const PATHROUTES = {
   HOME: "/",
   PRODUCTS: "/products",
-  PRODUCT: "/products/:productId",
+  PRODUCT: "/products/:slug",
   CONTACT: "/contact",
 };
 
